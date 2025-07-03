@@ -269,7 +269,7 @@ At first glance, the Hybrid Phase Detector seems more complex than TSPC alone. H
 > Although the Hybrid PD includes both XOR and TSPC blocks, it is **power-optimized** by design. It ensures that **only one block is active at a time**, avoiding unnecessary switching and reducing total power consumption compared to TSPC-only implementation.
 
 
-### 🏁 Conclusion
+### Conclusion
 
 In this project, we successfully improved the phase detection mechanism in PLLs by:
 
