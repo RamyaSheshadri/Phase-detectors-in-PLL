@@ -9,9 +9,11 @@ This is a continuation of the previous project where we did a **comparative anal
   - While **XOR gate** can be used as a Phase Detector for simplicity,
   - It **limits the phase detection range from 0–180 degrees**.
   - Beyond this phase difference, we observed that the **output was not accurate**.
+  - Presence of dead zones.
 
 ---
-
+Dead zones are regions of phase difference where the output of the Phase Detector doesn’t change (or gives no useful info) — meaning it can’t detect small changes in phase.
+For phase difference near 0° or 180°, the XOR output becomes flat — giving very little/no change in output.
 ### ⚙️ Improvement in This Project
 
 To overcome the above drawback, we proposed:
