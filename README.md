@@ -6,7 +6,7 @@ This is a continuation of the previous project where we did a **comparative anal
 
 - We had built a **basic block diagram of Phase Locked Loops in Cadence Virtuoso**.
 - One of the drawbacks we observed in that project was:
-  - While **XOR gate** can be used as a Phase Detector for simplicity,
+- While **XOR gate** can be used as a Phase Detector for simplicity,
   - It **limits the phase detection range from 0–180 degrees**.
   - Beyond this phase difference, we observed that the **output was not accurate**.
   - Presence of dead zones.
