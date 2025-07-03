@@ -18,18 +18,19 @@ For phase difference near 0° or 180°, the XOR output becomes flat — giving v
 
 To overcome the above drawback, we proposed:
 
-#### ✅ 1. TSPC-Based Phase Detector
+#### 1. TSPC-Based Phase Detector
 - TSPC helps **increase the phase detection range up to 360 degrees**.
 - It overcomes the limitation of XOR and gives **more accurate output over the full range**.
+- Minimizes the dead zones.
 
-#### 🧠 2. Novel MUX-Based Phase Detector (Our Idea!)
+#### 2. Novel MUX-Based Phase Detector
 - We came up with a **new idea** of using a **MUX-based Phase Detector**.
 - This design **incorporates the best of both XOR and TSPC**, hence optimizing the circuit.
 - Selection between the two is done using a **D Flip-Flop**.
 
 ---
 
-### 🔀 Working Logic
+### Working Logic
 
 - A **D Flip-Flop** is used to generate a **select line (SEL)**.
 - Based on the value of `SEL`, the corresponding Phase Detector is chosen:
@@ -41,19 +42,19 @@ To overcome the above drawback, we proposed:
 
 ---
 
-### 🎯 Why This Works
+###  Why This Works
 
-- ✅ **If SEL = 0**:
+-  **If SEL = 0**:
   - XOR gate is used.
   - This makes the circuitry **simpler**, as XOR logic is **basic** and easy to implement.
 
-- ✅ **If SEL = 1**:
+- **If SEL = 1**:
   - TSPC circuit is chosen.
   - This helps in **minimizing the dead zones** which were observed earlier.
 
 ---
 
-### ✅ Summary
+### Summary
 
 > This project enhances the original PLL design by addressing phase detection limitations using a hybrid XOR + TSPC approach, selected through a novel DFF-controlled MUX setup.
 
