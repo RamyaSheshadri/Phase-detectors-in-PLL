@@ -237,6 +237,38 @@ To overcome the limitations of standalone Phase Detectors, we designed a **Hybri
 ### Output waveform when SEL=1:
 ![op of sel=1](https://github.com/user-attachments/assets/19814921-b32c-4f37-b74f-0c312615f65f)
 
+### Why is Hybrid PD Power < TSPC Alone?
+
+At first glance, the Hybrid Phase Detector seems more complex than TSPC alone. However, it actually consumes **less power overall**, and here’s why:
+
+---
+
+#### 1. TSPC Runs Continuously in Standalone Mode
+- In a pure TSPC-based Phase Detector, the circuit is **always active**, runs 100% of the time in a standalone design
+- Dynamic nodes **switch every clock cycle**, even when phase difference is within 0–180°, where XOR would be sufficient.
+- This leads to **unnecessary dynamic power consumption**.
+
+---
+
+#### 2. Hybrid Activates Only the Required Block
+- In the Hybrid design, the **MUX selects XOR or TSPC** based on phase conditions.
+- For **0°–180°**, only the **XOR block is active**, and **TSPC remains idle**.
+- This **conditional activation** saves power significantly.
+
+---
+
+#### 3. MUX and DFF Overhead is Minimal
+- The **MUX** and **D Flip-Flop** used for selection logic:
+  - Have **very low switching activity**
+  - Consume **negligible power** compared to full TSPC circuitry
+- Hence, the extra logic does **not significantly increase total power**.
+
+---
+
+### Conclusion:
+> Although the Hybrid PD includes both XOR and TSPC blocks, it is **power-optimized** by design. It ensures that **only one block is active at a time**, avoiding unnecessary switching and reducing total power consumption compared to TSPC-only implementation.
+
+
 ### 🏁 Conclusion
 
 In this project, we successfully improved the phase detection mechanism in PLLs by:
