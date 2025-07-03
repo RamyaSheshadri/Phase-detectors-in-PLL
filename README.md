@@ -151,6 +151,93 @@ TSPC stands for **True Single Phase Clocking** — a design style commonly used 
 ![tspc 270  ps](https://github.com/user-attachments/assets/24e3d61a-dc1a-455b-9f07-b61cd0c02494)
 
 
+### ❓ Why Not Just Use TSPC Alone?
+
+While **TSPC Phase Detectors** are capable of detecting the full **0°–360°** phase range, we chose **not to use TSPC alone** for the following reasons:
+
+#### ⚠️ Reasons Against Using Only TSPC:
+- For **0°–180° phase difference**, the XOR gate works **perfectly fine**.
+- TSPC, although powerful, involves:
+  - More **transistor count**
+  - Slightly **higher complexity**
+  - Increased **power and area overhead** if used unnecessarily
+
+---
+
+### 💡 Why the Hybrid Approach is Better:
+
+- By **using XOR for 0°–180°**, we:
+  - Keep the circuit **simple**
+  - Save **power** and **silicon area**
+  - Leverage XOR’s **clean, glitch-free output**
+
+- For **180°–360°**, where XOR fails, we switch to **TSPC** for its **accuracy and wider range**.
+
+#### ✅ This selective usage gives us the **best of both worlds**:
+| Range        | Phase Detector | Reason                   |
+|--------------|----------------|--------------------------|
+| 0° – 180°    | XOR            | Simple, accurate, light  |
+| 180° – 360°  | TSPC           | Required for full range  |
+
+---
+
+### 🎯 Final Thought:
+
+> We designed this Hybrid PD **intentionally**, not just for novelty — but to **balance simplicity and accuracy** based on the operating condition. This makes our design both **efficient** and **smart** 💡
+
+
+
+
+## Hybrid Phase Detector:
+### 🔗 Hybrid Phase Detector Architecture (Our Novel Approach)
+
+To overcome the limitations of standalone Phase Detectors, we designed a **Hybrid Phase Detector** that combines:
+
+- ✅ **XOR-based Phase Detector** → Accurate and simple for 0°–180° range
+- ✅ **TSPC-based Phase Detector** → Robust and linear for 180°–360° range
+- 🔀 **2×1 Multiplexer (MUX)** → Selects between XOR and TSPC outputs
+- ⏱ **D Flip-Flop (DFF)** → Controls the `SEL` line for MUX selection
+
+---
+
+### 💡 Working Concept:
+
+- A **D Flip-Flop** generates the `SEL` signal based on the system logic or operating region.
+- This `SEL` signal decides which Phase Detector is active:
+
+| SEL | Selected PD | Phase Range Detected |
+|-----|-------------|----------------------|
+| 0   | XOR         | 0° to 180°           |
+| 1   | TSPC        | 180° to 360°         |
+
+- The **MUX** acts as a switch, forwarding the output of the selected Phase Detector to the rest of the PLL system.
+
+---
+
+### 🎯 Benefits of Hybrid Architecture:
+
+- ✅ **Combines simplicity and accuracy** in one design
+- 🚫 **Eliminates dead zones** present in XOR-only designs
+- ⚡ **Improves phase detection over full 0–360° range**
+- 🔄 **Dynamic selection** ensures optimal performance based on phase condition
+- 💡 **Novel idea** not seen in standard PLL implementations
+
+---
+
+### 📌 Summary:
+
+> This hybrid Phase Detector intelligently chooses between two different architectures to achieve **complete and accurate phase detection**, making the PLL more efficient, robust, and lock faster across all conditions.
+
+
+### Schematic:
+![hybrid schematic](https://github.com/user-attachments/assets/98a17f24-3e14-418c-9196-a1f827cf5a68)
+
+### Output waveform when SEL=0:
+![op of sel=0](https://github.com/user-attachments/assets/5b523d0c-717f-475e-b656-221c79d75a07)
+
+### Output waveform when SEL=1:
+![op of sel=1](https://github.com/user-attachments/assets/19814921-b32c-4f37-b74f-0c312615f65f)
+
 
 ### Summary
 
