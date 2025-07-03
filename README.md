@@ -98,19 +98,56 @@ This helps in **switching between XOR and TSPC detectors**, depending on the pha
 
 
 
-### TSPC circuit:
+## TSPC circuit:
 
+### Basic Working of TSPC Phase Detector
 
+TSPC stands for **True Single Phase Clocking** — a design style commonly used in **high-speed digital circuits**, especially in **phase detectors** and **flip-flops**.
+
+#### Key Features:
+- Uses **only one clock signal** (no clock inversion or multiple phases)
+- Works at **high frequencies** with **low power consumption**
+- Eliminates race conditions seen in traditional dynamic logic
+
+---
+
+###  Working Principle:
+
+- TSPC logic typically uses **dynamic logic** with **precharge and evaluate phases** controlled by a **single clock**.
+- The circuit consists of **NMOS and PMOS transistors** arranged such that:
+  - When **clock is low** → Precharge phase (output node gets precharged)
+  - When **clock is high** → Evaluate phase (circuit evaluates input logic and updates output)
+
+---
+
+###  In Our Project:
+
+- We used a **TSPC-based Phase Detector** to detect phase differences between two input signals.
+- Unlike XOR, it can detect **phase differences from 0° to 360°**.
+- The dynamic logic in TSPC ensures **fast switching** and **accurate edge detection**.
+
+---
+
+###  Why TSPC is Better Here:
+
+- **No dead zones** → Full 0–360° phase detection range
+- **High speed** → Ideal for faster PLL locking
+- **Less clock complexity** → Only one phase of clock needed
+- Helps maintain **low power** and **compact layout**
+
+### Schematic:
 ![tspc pt 2](https://github.com/user-attachments/assets/4d406c15-cc9e-4795-91df-93780d551521)
 
+### Block diagram:
 ![tspc pt 3](https://github.com/user-attachments/assets/5e4efa03-c861-420f-8c97-d0b4487384e6)
 
+### Output waveform:
 ![tspc pt 1](https://github.com/user-attachments/assets/248a6115-2f40-41c6-8783-0bc6ef2f0ecf)
 
-
+### At 0 degree delay:
 ![tspc 0 deg delay](https://github.com/user-attachments/assets/85ee34a9-6423-496c-921f-568993cba77f)
 
-
+### At 270 degree delay:
 ![tspc 270  ps](https://github.com/user-attachments/assets/24e3d61a-dc1a-455b-9f07-b61cd0c02494)
 
 
